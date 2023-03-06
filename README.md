@@ -128,7 +128,7 @@ Esse projeto tem por objetivo realizar o controle de reservas do Hotel Estelar.
 
 ## Ver Detalhes da Reserva
 
-`GET` /hotelestelar/api/reserva/detalhes/{id}
+`GET` /hotelestelar/api/reserva/detalhes/{idReserva}
 
 **Exemplo do corpo de Response**
 
@@ -166,7 +166,7 @@ Esse projeto tem por objetivo realizar o controle de reservas do Hotel Estelar.
 
 ## Apagar Minha Reserva
 
-`DELETE` /hotelestelar/api/minha-reserva/apagar/{id}
+`DELETE` /hotelestelar/api/minha-reserva/apagar/{idReserva}
 
 **Exemplo do corpo de Request**
 
