@@ -17,7 +17,7 @@ Esse projeto tem por objetivo realizar o controle de reservas do Hotel Estelar.
 
 | campo                 | tipo           | obrigatório | descrição                                                                     |
 | --------------------- | -------------- | ----------- | ----------------------------------------------------------------------------- |
-| id                    | int            | sim         | é o identificador unico de uma reserva                                        |
+| id                    | Long            | sim         | é o identificador unico de uma reserva                                        |
 | unidade               | String         | sim         | unidade onde está localizada a reserva                                        |
 | dataReserva           | data           | sim         | data em que foi realizada a reserva                                           |
 | dataInicio            | data           | sim         | data do inicio da estadia                                                     |

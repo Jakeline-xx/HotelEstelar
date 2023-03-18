@@ -13,7 +13,7 @@ public class InformacoesAdicionais {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_informacoes_adicionais")
-    private int idInformacoesAdicionais;
+    private Long idInformacoesAdicionais;
 
     @Column(name = "aceita_pet")
     private boolean aceitaPet;
@@ -69,11 +69,11 @@ public class InformacoesAdicionais {
 
     //Getters and Setters 
 
-    public int getIdInformacoesAdicionais() {
+    public Long getIdInformacoesAdicionais() {
         return idInformacoesAdicionais;
     }
 
-    public void setIdInformacoesAdicionais(int idInformacoesAdicionais) {
+    public void setIdInformacoesAdicionais(Long idInformacoesAdicionais) {
         this.idInformacoesAdicionais = idInformacoesAdicionais;
     }
 

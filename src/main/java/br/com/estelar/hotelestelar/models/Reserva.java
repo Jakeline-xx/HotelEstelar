@@ -1,6 +1,7 @@
 package br.com.estelar.hotelestelar.models;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,7 +19,7 @@ public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_reserva")
-    private int idReserva;
+    private Long idReserva;
 
     @Column(name = "unidade")
     private String unidade;
@@ -42,7 +43,7 @@ public class Reserva {
     @Column(name = "valor_total")
     private double valorTotal;
 
-    public Reserva(int idReserva, String unidade, LocalDate dataReserva, LocalDate dataInicio, LocalDate dataFim, String acomodacao, InformacoesAdicionais informacoesAdicionais, double valorTotal) {
+    public Reserva(Long idReserva, String unidade, LocalDate dataReserva, LocalDate dataInicio, LocalDate dataFim, String acomodacao, InformacoesAdicionais informacoesAdicionais, double valorTotal) {
         this.idReserva = idReserva;
         this.unidade = unidade;
         this.dataReserva = dataReserva;
@@ -55,11 +56,11 @@ public class Reserva {
 
     //Getters and Setters 
     
-    public int getIdReserva() {
+    public Long getIdReserva() {
         return idReserva;
     }
 
-    public void setIdReserva(int idReserva) {
+    public void setIdReserva(Long idReserva) {
         this.idReserva = idReserva;
     }
 
@@ -117,6 +118,13 @@ public class Reserva {
 
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public Optional<Reserva> stream() {
+        return null;
+    }
+
+    public void add(Reserva reserva) {
     }
     
 }
