@@ -23,19 +23,6 @@ public class ReservaController {
 
     List<Reserva> reservas = new ArrayList<>();
 
-    @GetMapping("/api/reserva/cadastrar")
-    public List<Reserva> index() {
-        return reservas;
-    }
-
-    @PostMapping("/api/minhas-reservas")
-    public ResponseEntity<Reserva> create(@RequestBody Reserva reserva) {
-        log.info("cadastrando reserva: " + reserva);
-        reserva.setIdReserva(reservas.size() + 1l);
-        reservas.add(reserva);
-        return ResponseEntity.status(HttpStatus.CREATED).body(reserva);
-    }
-
     @GetMapping("/api/reserva/detalhes/{idReserva}")
     public ResponseEntity<Reserva> show(@PathVariable Long idReserva) {
         log.info("buscando reserva com id " + idReserva);
@@ -46,6 +33,32 @@ public class ReservaController {
 
         return ResponseEntity.ok(reservaEncontrada.get());
 
+    }
+
+    // @GetMapping("/api/reserva/cadastrar")
+    // public List<Reserva> index() {
+    //     return reservas;
+    // }
+
+    @GetMapping("/api/minhas-reservas")
+    public List<Reserva> index() {
+        return reservas;
+    }
+
+    // @PostMapping("/api/minhas-reservas")
+    // public ResponseEntity<Reserva> create(@RequestBody Reserva reserva) {
+    //     log.info("cadastrando reserva: " + reserva);
+    //     reserva.setIdReserva(reservas.size() + 1l);
+    //     reservas.add(reserva);
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(reserva);
+    // }
+
+    @PostMapping("/api/reserva/cadastrar")
+    public ResponseEntity<Reserva> create(@RequestBody Reserva reserva) {
+        log.info("cadastrando reserva: " + reserva);
+        reserva.setIdReserva(reservas.size() + 1l);
+        reservas.add(reserva);
+        return ResponseEntity.status(HttpStatus.CREATED).body(reserva);
     }
 
     @DeleteMapping("/api/minha-reserva/apagar/{idReserva}")
@@ -62,7 +75,7 @@ public class ReservaController {
 
     }
 
-    @PutMapping("/api/minha-reserva/atualizar")
+    @PutMapping("/api/minha-reserva/atualizar/{idReserva}")
     public ResponseEntity<Reserva> update(@PathVariable Long idReserva, @RequestBody Reserva reserva) {
         log.info("alterando reserva com id " + idReserva);
         var reservaEncontrada = reservas.stream().filter(d -> d.getIdReserva().equals(idReserva)).findFirst();
