@@ -1,6 +1,7 @@
 package br.com.estelar.hotelestelar.models;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import javax.persistence.CascadeType;
@@ -24,14 +25,17 @@ public class Reserva {
     @Column(name = "unidade")
     private String unidade;
 
+    @Column(name = "numero_quarto")
+    private String numeroQuarto;
+
     @Column(name = "data_reserva")
-    private LocalDate dataReserva;
+    private LocalDateTime dataReserva;
 
     @Column(name = "data_inicio")
-    private LocalDate dataInicio;
+    private LocalDateTime dataInicio;
 
     @Column(name = "data_fim")
-    private LocalDate dataFim;
+    private LocalDateTime dataFim;
 
     @Column(name = "acomodacao")
     private String acomodacao;
@@ -43,15 +47,16 @@ public class Reserva {
     @Column(name = "valor_total")
     private double valorTotal;
 
-    public Reserva(Long idReserva, String unidade, LocalDate dataReserva, LocalDate dataInicio, LocalDate dataFim, String acomodacao, InformacoesAdicionais informacoesAdicionais, double valorTotal) {
+    public Reserva(Long idReserva, String unidade, LocalDateTime dataReserva, LocalDateTime dataInicio, LocalDateTime dataFim, String acomodacao, String numeroQuarto, InformacoesAdicionais informacoesAdicionais, double valorTotal) {
         this.idReserva = idReserva;
         this.unidade = unidade;
+        this.acomodacao = acomodacao;
+        this.numeroQuarto = numeroQuarto;
+        this.informacoesAdicionais = informacoesAdicionais;
+        this.valorTotal = valorTotal;  
         this.dataReserva = dataReserva;
         this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
-        this.acomodacao = acomodacao;
-        this.informacoesAdicionais = informacoesAdicionais;
-        this.valorTotal = valorTotal;   
+        this.dataFim = dataFim; 
     }
 
     //Getters and Setters 
@@ -72,27 +77,35 @@ public class Reserva {
         this.unidade = unidade;
     }
 
-    public LocalDate getDataReserva() {
+    public String getNumeroQuarto() {
+        return numeroQuarto;
+    }
+
+    public void setNumeroQuarto(String numeroQuarto) {
+        this.numeroQuarto = numeroQuarto;
+    }
+
+    public LocalDateTime getDataReserva() {
         return dataReserva;
     }
 
-    public void setDataReserva(LocalDate dataReserva) {
+    public void setDataReserva(LocalDateTime dataReserva) {
         this.dataReserva = dataReserva;
     }
 
-    public LocalDate getDataInicio() {
+    public LocalDateTime getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(LocalDate dataInicio) {
+    public void setDataInicio(LocalDateTime dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public LocalDate getDataFim() {
+    public LocalDateTime getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(LocalDate dataFim) {
+    public void setDataFim(LocalDateTime dataFim) {
         this.dataFim = dataFim;
     }
 
