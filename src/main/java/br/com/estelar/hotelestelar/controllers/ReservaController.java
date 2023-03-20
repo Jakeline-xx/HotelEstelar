@@ -35,23 +35,10 @@ public class ReservaController {
 
     }
 
-    // @GetMapping("/api/reserva/cadastrar")
-    // public List<Reserva> index() {
-    //     return reservas;
-    // }
-
     @GetMapping("/api/minhas-reservas")
     public List<Reserva> index() {
         return reservas;
     }
-
-    // @PostMapping("/api/minhas-reservas")
-    // public ResponseEntity<Reserva> create(@RequestBody Reserva reserva) {
-    //     log.info("cadastrando reserva: " + reserva);
-    //     reserva.setIdReserva(reservas.size() + 1l);
-    //     reservas.add(reserva);
-    //     return ResponseEntity.status(HttpStatus.CREATED).body(reserva);
-    // }
 
     @PostMapping("/api/reserva/cadastrar")
     public ResponseEntity<Reserva> create(@RequestBody Reserva reserva) {
