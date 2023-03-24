@@ -11,10 +11,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
 @Entity
 @Table(name = "reserva")
 public class Reserva {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "id_reserva")
     private Long idReserva;
 
@@ -42,6 +47,8 @@ public class Reserva {
 
     @Column(name = "valor_total")
     private double valorTotal;
+
+    protected Reserva(){}
 
     public Reserva(Long idReserva, String unidade, LocalDateTime dataReserva, LocalDateTime dataInicio, LocalDateTime dataFim, String acomodacao, String numeroQuarto, InformacoesAdicionais informacoesAdicionais, double valorTotal) {
         this.idReserva = idReserva;
@@ -134,6 +141,9 @@ public class Reserva {
     }
 
     public void add(Reserva reserva) {
+    }
+
+    public void setId(Long idReserva2) {
     }
     
 }
