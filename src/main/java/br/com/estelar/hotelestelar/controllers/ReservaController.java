@@ -32,7 +32,7 @@ public class ReservaController {
     ReservaRepository repository;
 
 
-    @GetMapping("/api/minhas-reservas")
+    @GetMapping("/minhas-reservas")
     public List<Reserva> index(){
         return repository.findAll();
     }
@@ -60,7 +60,7 @@ public class ReservaController {
     }
 
 
-    @DeleteMapping("/api/minha-reserva/apagar/{idReserva}")
+    @DeleteMapping("/minha-reserva/apagar/{idReserva}")
     public ResponseEntity<Reserva> destroy(@PathVariable Long idReserva) {
         log.info("apagando reserva com id " + idReserva);
         var reservaEncontrada = repository.findById(idReserva);
@@ -74,7 +74,7 @@ public class ReservaController {
 
     }
 
-    @PutMapping("/api/minha-reserva/atualizar/{idReserva}")
+    @PutMapping("/minha-reserva/atualizar/{idReserva}")
     public ResponseEntity<Reserva> update(@PathVariable Long idReserva, @RequestBody Reserva reserva) {
         log.info("alterando reserva com id " + idReserva);
         var reservaEncontrada = repository.findById(idReserva) ;
