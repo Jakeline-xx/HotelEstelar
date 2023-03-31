@@ -29,8 +29,6 @@ public class ReservaController {
 
     Logger log = LoggerFactory.getLogger(ReservaController.class);
 
-    List<Reserva> reservas = new ArrayList<>();
-
     @Autowired //IoD IoC
     ReservaRepository repository;
 
