@@ -1,5 +1,6 @@
-package br.com.estelar.hotelestelar.models;
+package br.com.hotelestelar.models;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -13,6 +14,10 @@ import javax.persistence.Table;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "reserva")
@@ -23,34 +28,46 @@ public class Reserva {
     @Column(name = "id_reserva")
     private Long idReserva;
 
+    @NotBlank
     @Column(name = "unidade")
     private String unidade;
 
+    @NotNull
     @Column(name = "numero_quarto")
     private String numeroQuarto;
 
+    @NotBlank
+    @Size(min = 11, max = 11)
     @Column(name = "data_reserva")
     private LocalDateTime dataReserva;
 
+    @NotBlank
+    @Size(min = 11, max = 11)
     @Column(name = "data_inicio")
     private LocalDateTime dataInicio;
 
+    @NotBlank
+    @Size(min = 11, max = 11)
     @Column(name = "data_fim")
     private LocalDateTime dataFim;
 
+    @NotBlank
     @Column(name = "acomodacao")
     private String acomodacao;
 
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_informacoes_adicionais")
     private InformacoesAdicionais informacoesAdicionais;
 
+    @NotNull
+    @Min(value = 0, message = "O valor da reserva deve ser maior que 0")
     @Column(name = "valor_total")
-    private double valorTotal;
+    private BigDecimal valorTotal;
 
     protected Reserva(){}
 
-    public Reserva(Long idReserva, String unidade, LocalDateTime dataReserva, LocalDateTime dataInicio, LocalDateTime dataFim, String acomodacao, String numeroQuarto, InformacoesAdicionais informacoesAdicionais, double valorTotal) {
+    public Reserva(Long idReserva, String unidade, LocalDateTime dataReserva, LocalDateTime dataInicio, LocalDateTime dataFim, String acomodacao, String numeroQuarto, InformacoesAdicionais informacoesAdicionais, BigDecimal valorTotal) {
         this.idReserva = idReserva;
         this.unidade = unidade;
         this.acomodacao = acomodacao;
@@ -128,11 +145,11 @@ public class Reserva {
         this.informacoesAdicionais = informacoesAdicionais;
     }
 
-    public double getValorTotal() {
+    public BigDecimal getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(double valorTotal) {
+    public void setValorTotal(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
     }
 

@@ -1,4 +1,4 @@
-package br.com.estelar.hotelestelar;
+package br.com.hotelestelar;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

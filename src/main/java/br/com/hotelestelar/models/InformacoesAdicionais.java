@@ -1,4 +1,4 @@
-package br.com.estelar.hotelestelar.models;
+package br.com.hotelestelar.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

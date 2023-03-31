@@ -1,6 +1,7 @@
-package br.com.estelar.hotelestelar.repository;
+package br.com.hotelestelar.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
-import br.com.estelar.hotelestelar.models.Reserva;
+
+import br.com.hotelestelar.models.Reserva;
 
 public interface ReservaRepository extends JpaRepository<Reserva, Long>{
     

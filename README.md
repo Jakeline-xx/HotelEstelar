@@ -24,7 +24,7 @@ Esse projeto tem por objetivo realizar o controle de reservas do Hotel Estelar.
 | dataFim               | data           | sim         | data do fim da estadia                                                        |
 | acomodacao            | String         | sim         | descricao do tipo de acomodacao                                               |
 | informacoesAdicionais | List<boolean"> | sim         | indicação se há ou não as acomodações existentes, sendo 1 pra sim e 2 pra não |
-| dataReserva           | decimal        | sim         | valor total da reserva                                                        |
+| valorTotal           | BigDecimal        | sim         | valor total da reserva                                                        |
 
 **Exemplo do corpo de Request**
 
