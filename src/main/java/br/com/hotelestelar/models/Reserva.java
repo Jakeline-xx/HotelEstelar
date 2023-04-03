@@ -24,7 +24,6 @@ import jakarta.validation.constraints.Size;
 public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "id_reserva")
     private Long idReserva;
 
