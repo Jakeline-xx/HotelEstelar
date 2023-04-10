@@ -20,7 +20,6 @@ import br.com.hotelestelar.models.Reserva;
 import br.com.hotelestelar.repository.ReservaRepository;
 import jakarta.validation.Valid;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

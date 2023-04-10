@@ -8,7 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "informacoes_adicionais")
 public class InformacoesAdicionais {
@@ -65,125 +69,4 @@ public class InformacoesAdicionais {
     @Column(name = "possui_lareira")
     private boolean possuiLareira;
 
-
-    public InformacoesAdicionais(boolean aceitaPet, boolean possuiWifi, boolean possuiEscritorio, boolean possuiArCondicionado, boolean ehBeiraMar, boolean possuiMaquinaDeLavar, boolean possuiFerroDePassar, boolean possuiTv, boolean possuiSecadora, boolean possuiTerraco, boolean possuiBerco, boolean possuiLareira) {
-        this.aceitaPet = aceitaPet;
-        this.possuiWifi = possuiWifi;
-        this.possuiEscritorio = possuiEscritorio;
-        this.possuiArCondicionado = possuiArCondicionado;
-        this.ehBeiraMar = ehBeiraMar;
-        this.possuiMaquinaDeLavar = possuiMaquinaDeLavar;
-        this.possuiFerroDePassar = possuiFerroDePassar;
-        this.possuiTv = possuiTv;
-        this.possuiSecadora = possuiSecadora;
-        this.possuiTerraco = possuiTerraco;
-        this.possuiBerco = possuiBerco;
-        this.possuiLareira = possuiLareira;
-    }
-
-    //Getters and Setters 
-
-    public Long getIdInformacoesAdicionais() {
-        return idInformacoesAdicionais;
-    }
-
-    public void setIdInformacoesAdicionais(Long idInformacoesAdicionais) {
-        this.idInformacoesAdicionais = idInformacoesAdicionais;
-    }
-
-    public boolean isAceitaPet() {
-        return aceitaPet;
-    }
-
-    public void setAceitaPet(boolean aceitaPet) {
-        this.aceitaPet = aceitaPet;
-    }
-
-    public boolean isPossuiWifi() {
-        return possuiWifi;
-    }
-
-    public void setPossuiWifi(boolean possuiWifi) {
-        this.possuiWifi = possuiWifi;
-    }
-
-    public boolean isPossuiEscritorio() {
-        return possuiEscritorio;
-    }
-
-    public void setPossuiEscritorio(boolean possuiEscritorio) {
-        this.possuiEscritorio = possuiEscritorio;
-    }
-
-    public boolean isPossuiArCondicionado() {
-        return possuiArCondicionado;
-    }
-
-    public void setPossuiArCondicionado(boolean possuiArCondicionado) {
-        this.possuiArCondicionado = possuiArCondicionado;
-    }
-
-    public boolean isEhBeiraMar() {
-        return ehBeiraMar;
-    }
-
-    public void setEhBeiraMar(boolean ehBeiraMar) {
-        this.ehBeiraMar = ehBeiraMar;
-    }
-
-    public boolean isPossuiMaquinaDeLavar() {
-        return possuiMaquinaDeLavar;
-    }
-
-    public void setPossuiMaquinaDeLavar(boolean possuiMaquinaDeLavar) {
-        this.possuiMaquinaDeLavar = possuiMaquinaDeLavar;
-    }
-
-    public boolean isPossuiFerroDePassar() {
-        return possuiFerroDePassar;
-    }
-
-    public void setPossuiFerroDePassar(boolean possuiFerroDePassar) {
-        this.possuiFerroDePassar = possuiFerroDePassar;
-    }
-
-    public boolean isPossuiTv() {
-        return possuiTv;
-    }
-
-    public void setPossuiTv(boolean possuiTv) {
-        this.possuiTv = possuiTv;
-    }
-
-    public boolean isPossuiSecadora() {
-        return possuiSecadora;
-    }
-
-    public void setPossuiSecadora(boolean possuiSecadora) {
-        this.possuiSecadora = possuiSecadora;
-    }
-
-    public boolean isPossuiTerraco() {
-        return possuiTerraco;
-    }
-
-    public void setPossuiTerraco(boolean possuiTerraco) {
-        this.possuiTerraco = possuiTerraco;
-    }
-
-    public boolean isPossuiBerco() {
-        return possuiBerco;
-    }
-
-    public void setPossuiBerco(boolean possuiBerco) {
-        this.possuiBerco = possuiBerco;
-    }
-
-    public boolean isPossuiLareira() {
-        return possuiLareira;
-    }
-
-    public void setPossuiLareira(boolean possuiLareira) {
-        this.possuiLareira = possuiLareira;
-    }
 }
