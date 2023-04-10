@@ -2,7 +2,6 @@ package br.com.hotelestelar.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -59,16 +58,13 @@ public class Reserva {
     private String acomodacao;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_informacoes_adicionais")
-    private InformacoesAdicionais informacoesAdicionais;
-
-    @NotNull
     @Min(value = 0, message = "O valor da reserva deve ser maior que 0")
     @Column(name = "valor_total")
     private BigDecimal valorTotal;
 
-    public void setId(Long idReserva2) {
-    }
-    
+    @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_informacoes_adicionais")
+    private InformacoesAdicionais informacoesAdicionais;
+
 }

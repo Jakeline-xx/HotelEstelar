@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.hotelestelar.exception.RestNotFoundException;
 import br.com.hotelestelar.models.Reserva;
+import br.com.hotelestelar.repository.InformacoesAdicionaisRepository;
 import br.com.hotelestelar.repository.ReservaRepository;
 import jakarta.validation.Valid;
 
@@ -29,21 +29,23 @@ public class ReservaController {
     Logger log = LoggerFactory.getLogger(ReservaController.class);
 
     @Autowired //IoD IoC
-    ReservaRepository repository;
+    ReservaRepository reservaRepository;
+
+    @Autowired //IoD IoC
+    InformacoesAdicionaisRepository informacoesAdiconaisRepository;
+
 
 
     @GetMapping("/minhas-reservas")
     public List<Reserva> index(){
-        return repository.findAll();
+        return reservaRepository.findAll();
     }
 
     @PostMapping("/cadastrar")
     public ResponseEntity<Object> create(@RequestBody @Valid Reserva reserva) {
-
         log.info("cadastrando reserva: " + reserva);
-        
-        repository.save(reserva);
-
+        reservaRepository.save(reserva);
+        reserva.setInformacoesAdicionais(informacoesAdiconaisRepository.findById(reserva.getInformacoesAdicionais().getIdInformacoesAdicionais()).get());
         return ResponseEntity.status(HttpStatus.CREATED).body(reserva);
     }
 
@@ -51,19 +53,15 @@ public class ReservaController {
     @GetMapping("/detalhes/{idReserva}")
     public ResponseEntity<Reserva> show(@PathVariable Long idReserva) {
         log.info("buscando reserva com id " + idReserva);
-        var reserva = repository.findById(idReserva).orElseThrow(() -> new ResponseStatusException(HttpStatus.FORBIDDEN, "Reserva não encontrada"));
-        return ResponseEntity.ok(reserva);
+        return ResponseEntity.ok(getReserva(idReserva));
 
 
     }
 
-
     @DeleteMapping("/minha-reserva/apagar/{idReserva}")
     public ResponseEntity<Reserva> destroy(@PathVariable Long idReserva) {
         log.info("apagando reserva com id " + idReserva);
-        var reserva = repository.findById(idReserva) .orElseThrow(() -> new RestNotFoundException("reserva não encontrada"));
-        repository.delete(reserva);
-
+        reservaRepository.delete(getReserva(idReserva));
         return ResponseEntity.noContent().build();
 
     }
@@ -71,14 +69,16 @@ public class ReservaController {
     @PutMapping("/minha-reserva/atualizar/{idReserva}")
     public ResponseEntity<Reserva> update(@PathVariable Long idReserva, @RequestBody Reserva reserva) {
         log.info("alterando reserva com id " + idReserva);
-        repository.findById(idReserva).orElseThrow(() -> new RestNotFoundException("despesa não encontrada"));
-        
+        getReserva(idReserva);
         reserva.setId(idReserva);
-
-        repository.save(reserva);
-
+        reservaRepository.save(reserva);
         return ResponseEntity.ok(reserva);
 
     }
+
+    private Reserva getReserva(Long idReserva) {
+        return reservaRepository.findById(idReserva).orElseThrow(() -> new ResponseStatusException(HttpStatus.FORBIDDEN, "Reserva não encontrada"));
+    }
+
 
 }
