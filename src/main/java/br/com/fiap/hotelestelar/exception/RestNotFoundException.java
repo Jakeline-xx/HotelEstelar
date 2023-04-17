@@ -1,4 +1,4 @@
-package br.com.hotelestelar.exception;
+package br.com.fiap.hotelestelar.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

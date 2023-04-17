@@ -1,4 +1,4 @@
-package br.com.hotelestelar.models;
+package br.com.fiap.hotelestelar.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -17,12 +17,16 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @Entity
+@AllArgsConstructor
+@Builder
 @Table(name = "reserva")
 public class Reserva {
     @Id
@@ -66,5 +70,8 @@ public class Reserva {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_informacoes_adicionais")
     private InformacoesAdicionais informacoesAdicionais;
+
+    public void setId(Long idReserva) {
+    }
 
 }

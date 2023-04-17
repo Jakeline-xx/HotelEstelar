@@ -1,4 +1,4 @@
-package br.com.hotelestelar.models;
+package br.com.fiap.hotelestelar.models;
 
 public record RestValidationError(
     Integer code,

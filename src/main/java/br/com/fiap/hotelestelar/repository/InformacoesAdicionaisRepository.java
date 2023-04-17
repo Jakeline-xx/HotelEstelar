@@ -1,8 +1,8 @@
-package br.com.hotelestelar.repository;
+package br.com.fiap.hotelestelar.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.hotelestelar.models.InformacoesAdicionais;
+import br.com.fiap.hotelestelar.models.InformacoesAdicionais;
 
 public interface InformacoesAdicionaisRepository extends JpaRepository <InformacoesAdicionais, Long> {
     

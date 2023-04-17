@@ -1,8 +1,9 @@
-package br.com.hotelestelar.controllers;
+package br.com.fiap.hotelestelar.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,21 +13,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.hotelestelar.models.Reserva;
-import br.com.hotelestelar.repository.InformacoesAdicionaisRepository;
-import br.com.hotelestelar.repository.ReservaRepository;
+import br.com.fiap.hotelestelar.models.Reserva;
+import br.com.fiap.hotelestelar.repository.InformacoesAdicionaisRepository;
+import br.com.fiap.hotelestelar.repository.ReservaRepository;
 import jakarta.validation.Valid;
-
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
+@Slf4j
 @RequestMapping("/api/reserva")
 public class ReservaController {
 
-    Logger log = LoggerFactory.getLogger(ReservaController.class);
 
     @Autowired //IoD IoC
     ReservaRepository reservaRepository;
@@ -37,8 +38,9 @@ public class ReservaController {
 
 
     @GetMapping("/minhas-reservas")
-    public List<Reserva> index(){
-        return reservaRepository.findAll();
+    public Page<Reserva> index(@RequestParam(required = false) String unidade, @PageableDefault(size = 5) Pageable pageable){
+        if (unidade == null) return reservaRepository.findAll(pageable);
+        return reservaRepository.findByUnidadeContaining(unidade, pageable);
     }
 
     @PostMapping("/cadastrar")

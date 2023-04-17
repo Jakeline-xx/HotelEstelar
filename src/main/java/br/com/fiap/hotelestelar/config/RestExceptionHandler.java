@@ -1,4 +1,4 @@
-package br.com.hotelestelar.config;
+package br.com.fiap.hotelestelar.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import br.com.hotelestelar.models.RestValidationError;
+import br.com.fiap.hotelestelar.models.RestValidationError;
 
 @RestControllerAdvice
 public class RestExceptionHandler {
