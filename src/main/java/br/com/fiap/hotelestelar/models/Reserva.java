@@ -11,6 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.EntityModel;
+
+import br.com.fiap.hotelestelar.controllers.ReservaController;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.Min;
@@ -21,6 +25,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
 
 @Data
 @NoArgsConstructor
@@ -72,6 +79,17 @@ public class Reserva {
     private InformacoesAdicionais informacoesAdicionais;
 
     public void setId(Long idReserva) {
+    }
+
+
+    public EntityModel<Reserva> toModel(){
+        return EntityModel.of(
+            this,
+            linkTo(methodOn(ReservaController.class).show(idReserva)).withSelfRel(),
+            linkTo(methodOn(ReservaController.class).destroy(idReserva)).withRel("delete"),
+            linkTo(methodOn(ReservaController.class).index(null, Pageable.unpaged())).withRel("all"),
+            linkTo(methodOn(ReservaController.class).show(this.getInformacoesAdicionais().getIdInformacoesAdicionais())).withRel("informaçõesAdicionais")
+        );
     }
 
 }
