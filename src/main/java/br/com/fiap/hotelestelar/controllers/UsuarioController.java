@@ -12,9 +12,11 @@ import br.com.fiap.hotelestelar.models.Credencial;
 import br.com.fiap.hotelestelar.models.Usuario;
 import br.com.fiap.hotelestelar.repository.UsuarioRepository;
 import br.com.fiap.hotelestelar.service.TokenService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
+@Tag(name = "auth")
 public class UsuarioController {
     @Autowired
     UsuarioRepository repository;
