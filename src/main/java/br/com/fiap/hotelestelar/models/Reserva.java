@@ -3,20 +3,11 @@ package br.com.fiap.hotelestelar.models;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
+import jakarta.persistence.*;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
 
 import br.com.fiap.hotelestelar.controllers.ReservaController;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -49,18 +40,15 @@ public class Reserva {
     @Column(name = "numero_quarto")
     private String numeroQuarto;
 
-    @NotBlank
-    @Size(min = 11, max = 11)
+    @NotNull
     @Column(name = "data_reserva")
     private LocalDateTime dataReserva;
 
-    @NotBlank
-    @Size(min = 11, max = 11)
+    @NotNull
     @Column(name = "data_inicio")
     private LocalDateTime dataInicio;
 
-    @NotBlank
-    @Size(min = 11, max = 11)
+    @NotNull
     @Column(name = "data_fim")
     private LocalDateTime dataFim;
 

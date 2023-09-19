@@ -44,10 +44,10 @@ public class ReservaController {
 
 
     @GetMapping("/minhas-reservas")
-    public PagedModel<EntityModel<Object>> index(@RequestParam(required = false) String busca, @PageableDefault(size = 5) Pageable pageable){
-        Page<Reserva> reservas = (busca == null)?
+    public PagedModel<EntityModel<Object>> index(@RequestParam(required = false) String unidade, @PageableDefault(size = 5) Pageable pageable){
+        Page<Reserva> reservas = (unidade == null)?
             reservaRepository.findAll(pageable):
-            reservaRepository.findByDescricaoContaining(busca, pageable);
+            reservaRepository.findByUnidadeContaining(unidade, pageable);
 
         return assembler.toModel(reservas.map(Reserva::toModel));
     }
