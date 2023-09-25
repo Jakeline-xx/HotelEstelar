@@ -9,7 +9,5 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long>{
 
     Page<Reserva> findByUnidadeContaining(String unidade, org.springframework.data.domain.Pageable pageable);
 
-    Page<Reserva> findByDescricaoContaining(String busca, Pageable pageable);
-
    
 }
