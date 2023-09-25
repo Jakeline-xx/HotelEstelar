@@ -1,5 +1,6 @@
 package br.com.fiap.hotelestelar.controllers;
 
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
@@ -24,12 +25,17 @@ import br.com.fiap.hotelestelar.exception.RestNotFoundException;
 import br.com.fiap.hotelestelar.models.Reserva;
 import br.com.fiap.hotelestelar.repository.InformacoesAdicionaisRepository;
 import br.com.fiap.hotelestelar.repository.ReservaRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
 @RequestMapping("/api/reserva")
+@SecurityRequirement(name = "bearer-key")
 public class ReservaController {
 
 
@@ -42,7 +48,6 @@ public class ReservaController {
     @Autowired
     PagedResourcesAssembler<Object> assembler;
 
-
     @GetMapping("/minhas-reservas")
     public PagedModel<EntityModel<Object>> index(@RequestParam(required = false) String unidade, @PageableDefault(size = 5) Pageable pageable){
         Page<Reserva> reservas = (unidade == null)?
@@ -52,7 +57,11 @@ public class ReservaController {
         return assembler.toModel(reservas.map(Reserva::toModel));
     }
 
-    @PostMapping("/cadastrar")
+    @PostMapping
+    @ApiResponses({
+        @ApiResponse(responseCode = "201", description = "reserva cadastrada com sucesso"),
+        @ApiResponse(responseCode = "400", description = "erro na validação dos dados da requisição")
+    })
     public ResponseEntity<Object> create(@RequestBody @Valid Reserva reserva) {
         log.info("cadastrando reserva: " + reserva);
         reservaRepository.save(reserva);
@@ -64,6 +73,10 @@ public class ReservaController {
 
 
     @GetMapping("/detalhes/{idReserva}")
+    @Operation(
+        summary = "Detalhes da reserva",
+        description = "Retorna os dados de uma despesa com id especificado"
+    )
     public EntityModel<Reserva> show(@PathVariable Long idReserva) {
         log.info("buscando reserva com id " + idReserva);
         var reserva = reservaRepository.findById(idReserva)
